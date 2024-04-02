@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FinanceJournal.MainPage">
+
+    <StackLayout Padding="10" BackgroundColor="DarkCyan">
+        <StackLayout Padding="5">
+            <Label Text="Мои финансы " HorizontalOptions="Center" FontSize="26" TextColor="Black"></Label>
+            <Label Text="Всего: " FontSize="20" TextColor="Black" x:Name="summa"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="Expenses" Text="Расходы" Clicked="Button_Clicked_1"></Button>
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="Incomes" Text="Доходы" Clicked="Button_Clicked_1"></Button>
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="Categories" Text="Категории" Clicked="Button_Clicked_1"></Button>
+            </StackLayout>
+            <Label Text="Последние операции " HorizontalOptions="Center" FontSize="22" TextColor="Black"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="Today" Text="Сегодня" Clicked="Sort_Clicked"></Button>
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="Week" Text="Неделя" Clicked="Sort_Clicked"></Button>
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="Month" Text="Месяц" Clicked="Sort_Clicked"></Button>
+                <Button BackgroundColor="DarkOrange" TextColor="Black" ClassId="All" Text="Всего" Clicked="Sort_Clicked"></Button>
+            </StackLayout>
+            <Label Text="Отсортировать по категориям " VerticalOptions="Center" HorizontalOptions="Center" FontSize="22" TextColor="Black"></Label>
+            <Picker x:Name="pickerOfCategories" ItemsSource="{Binding}" ItemDisplayBinding="{Binding Name}" >
+            </Picker>
+        </StackLayout>
+        <Label x:Name="MyText" Text="" VerticalOptions="Center" HorizontalOptions="Center" FontSize="22" TextColor="Black"></Label>
+        <StackLayout Margin="5,0,5,15" BackgroundColor="DarkGray">
+            <ListView HasUnevenRows="True" WidthRequest="350" HorizontalOptions="Center" VerticalOptions="Center" x:Name="MoneyList" ItemsSource="{Binding}" ItemSelected="MoneyList_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="LightGray" WidthRequest="650">
+                                    <StackLayout BackgroundColor="Snow" Margin="0,10,0,5" Padding="5" >
+                                        <Label Text="{Binding Name}" TextColor="Black"></Label>
+                                        <Label Text="{Binding Amount}" TextColor="Black"></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Категория: " FontSize="22" TextColor="Black"/>
+                                            <Label Text="{Binding Category}" FontSize="22" TextColor="Black"/>
+                                        </StackLayout>
+                                        <Label Text="{Binding DateTimeAdding.Date}" TextColor="Black"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
